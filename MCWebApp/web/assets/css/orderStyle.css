@@ -1,0 +1,170 @@
+/* Global body styling */
+body, html {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main title */
+.container h2 {
+    color: #f85c70;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ff6e7f;
+  padding: 15px;
+  color: white;
+}
+
+.menu {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profile {
+  width: 35px;
+  height: 35px;
+  background: white;
+  border-radius: 50%;
+}
+
+/* PAGE CONTENT */
+.container {
+  padding: 15px;
+}
+
+.title {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+/* Filter section */
+.date-filter{
+    max-width: 160px;
+}
+
+.btn-filter{
+    background: #f85c70;
+    border: 0px;
+}
+
+.btn-filter:hover{
+    background: #fb8a96;
+    border: 0px;
+}
+
+.filterDate{
+    text-align: left;
+}
+
+/* ORDER CARD */
+.order-card {
+  background: #f4f8ff;
+  padding: 15px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.08);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.order-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* STATUS TEXT – PRETTY STYLE */
+.status-text {
+  font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.2px;
+}
+
+.pending {
+  color: #7a7a7a;      /* soft grey */
+}
+
+.delivering {
+  color: #2d6cdf;      /* soft blue */
+}
+
+.delivered {
+  color: #2eb86c;      /* soft green */
+}
+
+/* ITEM DETAILS */
+.item-row p {
+  margin: 3px 0;
+  font-size: 14px;
+}
+
+.item-name {
+  font-weight: 600;
+}
+
+.order-total {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* SEPARATOR */
+.order-divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 12px 0;
+}
+
+.order-totals {
+    text-align: right;
+    font-weight: 500;
+}
+
+.order-totals .grand_total {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* BUTTONS */
+.btn-small,
+.btn-cancel {
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.btn-small {
+  background: #ff6e7f;
+  color: white;
+}
+
+.btn-cancel {
+  background: #ff4d4d;
+  color: white;
+  margin-top: 20px;
+}

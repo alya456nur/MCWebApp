@@ -1,0 +1,35 @@
+
+# NetBeans private configuration
+**/nbproject/private/
+
+# NetBeans build output
+**/build/
+**/dist/
+
+# Compiled Java files
+*.class
+
+# Java deployment packages
+*.war
+*.ear
+
+# Logs
+*.log
+
+# Database files
+*.db
+*.lck
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE settings
+.idea/
+.vscode/

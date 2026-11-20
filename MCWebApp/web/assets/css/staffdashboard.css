@@ -1,0 +1,181 @@
+/* Global body styling */
+body, html {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main title */
+.main-container h2 {
+    color: #f85c70;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Subsections Title */
+h3{
+    color: #f85c70;    
+}
+
+/* Filter section */
+.date-filter{
+    max-width: 160px;
+}
+
+.btn-filter{
+    background: #f85c70;
+    border: 0px;
+}
+
+.btn-filter:hover{
+    background: #fb8a96;
+    border: 0px;
+}
+
+.filterDate{
+    text-align: left;
+}
+
+/* Analytics section */
+.bigger-container{
+    margin-bottom: 32px;
+}
+
+.analytics-container {
+    background-color: #fee6e8; /* light pink background */
+    color: #f85c70;
+    border: 2px solid #f85c70; /* pink border */
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.analytics-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Card title and icon */
+.analytics .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.analytics .card-title i {
+    color: #f85c70; /* icon color */
+    font-size: 1.3rem; /* slightly bigger than label text */
+}
+
+/* Value text */
+.analytics .ms-md-2 p {
+    font-size: 1.6rem; /* bold number */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Center content and spacing */
+.analytics .d-flex {
+    gap: 0.5rem;
+}
+
+/* Responsive stacking for smaller screens */
+@media (max-width: 768px) {
+    .analytics .d-flex.flex-md-row {
+        flex-direction: column !important;
+        align-items: center;
+        text-align: center;
+    }
+}
+/*End of added*/
+
+.data-value {
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Section dividers (the chevron right icons) */
+.chart-container .fa-circle-chevron-right, .sales-container .fa-circle-chevron-right  {
+    color: #f85c70;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.chart-container .fa-circle-chevron-right:hover, .sales-container .fa-circle-chevron-right:hover {
+    transform: translateX(5px);
+}
+
+/* Sales Per Item section */
+.item-container {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 0.75rem 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    min-width: 220px; /* so small cards don’t shrink too much */
+    background-color: #fff;
+}
+
+.item-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.card-body .card-title {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.data-value-item {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+.row.g-2 {
+    gap: 1rem; /* give more space between cards */
+}
+
+/* Chart section*/
+.row{
+    padding: 12px 12px 12px 12px;
+}
+
+/* Responsive tweaks */
+
+/* Mobile */
+@media (max-width: 576px) {
+    .filterDate {
+        font-size: 14px !important;
+    }
+
+    p.data-value{
+        font-size: 12px;
+    }
+
+    p.card-title{
+        font-size: 14px;
+    }
+}
+
+/* Make value go below on small screens */
+@media (max-width: 576px) {
+    .card-body.d-flex {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    .card-body.d-flex > div {
+        margin-bottom: 0.5rem; /* spacing between icon, dropdown, value */
+    }
+}
+
+

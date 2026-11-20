@@ -1,0 +1,26 @@
+package servlet;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+import java.io.IOException;
+
+@WebServlet("/Logout")
+public class LogoutServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession(false); // Don't create if it doesn't exist
+        if (session != null) {
+            // Remove user-specific attributes
+            session.removeAttribute("userId");
+            session.removeAttribute("role");
+            session.invalidate(); // Destroy session completely
+        }
+
+        // Redirect to login page
+        response.sendRedirect("login.jsp");
+    }
+}

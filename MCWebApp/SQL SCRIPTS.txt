@@ -1,0 +1,328 @@
+//SQL UPDATED PLEASE DROP THE PREVIOUS ONE AND EXECUTE THIS ONE:
+
+CREATE TABLE CUSTOMER (
+    CUST_ID VARCHAR(10) PRIMARY KEY,
+    CUST_NAME VARCHAR(100) NOT NULL,
+    CUST_EMAIL VARCHAR(100) NOT NULL,
+    CUST_PASS VARCHAR(100) NOT NULL,
+    CUST_ADD VARCHAR(255),
+    CUST_PHONE VARCHAR(20),
+    USER_ROLE VARCHAR(20) DEFAULT 'Customer'
+);
+
+CREATE TABLE STAFF (
+    STAFF_ID VARCHAR(10) PRIMARY KEY,
+    STAFF_EMAIL VARCHAR(100) NOT NULL,
+    STAFF_PASS VARCHAR(100) NOT NULL,
+    STAFF_NAME VARCHAR(100) NOT NULL,
+    STAFF_PHONE VARCHAR(20),
+    USER_ROLE VARCHAR(20) DEFAULT 'Staff'
+);
+
+CREATE TABLE PRODUCT (
+    PROD_ID VARCHAR(10) PRIMARY KEY,
+    PROD_CODE VARCHAR(10) NOT NULL,
+    PROD_NAME VARCHAR(100) NOT NULL,
+    CATEGORY VARCHAR(50),
+    TOTAL_QTY INT,
+    PROD_STATUS VARCHAR(20),
+    IMG_PATH VARCHAR(255),
+    CREATE_DATE DATE  DEFAULT CURRENT_DATE,
+    LAST_UPDATE DATE  DEFAULT CURRENT_DATE
+);
+
+CREATE TABLE VARIATION (
+    VAR_ID VARCHAR(10) PRIMARY KEY,
+    VAR_NAME VARCHAR(100),
+    SKU VARCHAR(20),
+    VAR_PRICE DECIMAL(10,2),
+    QTY_BEFORE INT,    
+    VAR_QTY INT,
+    SOLD_QTY INT,
+    VAR_STATUS VARCHAR(20),
+    IMG_PATH VARCHAR(255),
+    CREATE_DATE DATE DEFAULT CURRENT_DATE,
+    LAST_UPDATE DATE DEFAULT CURRENT_DATE,
+    PROD_ID VARCHAR(10) NOT NULL,
+
+    CONSTRAINT fk_variation_product
+        FOREIGN KEY (PROD_ID)
+        REFERENCES PRODUCT(PROD_ID)
+);
+
+CREATE TABLE STOCK (
+    STOCK_ID VARCHAR(10) PRIMARY KEY,
+    STOCK_TYPE VARCHAR(10),
+    STOCK_QTY INT,
+    STOCK_DATE DATE,
+    REMARK VARCHAR(255),
+    VAR_ID VARCHAR(10),
+    STAFF_ID VARCHAR(10),
+    ORDER_ID VARCHAR(10),
+
+    CONSTRAINT fk_stock_variation
+        FOREIGN KEY (VAR_ID)
+        REFERENCES VARIATION(VAR_ID),
+
+    CONSTRAINT fk_stock_staff
+        FOREIGN KEY (STAFF_ID)
+        REFERENCES STAFF(STAFF_ID),
+
+    CONSTRAINT fk_order_table
+        FOREIGN KEY (ORDER_ID)
+        REFERENCES ORDERS(ORDER_ID)
+);
+
+CREATE TABLE ORDERS (
+    ORDER_ID VARCHAR(10) PRIMARY KEY,
+    ORDER_NO VARCHAR(20),
+    CUST_NO VARCHAR(20),
+    SUB_TOTAL DECIMAL(10,2),
+    STATUS VARCHAR(20) DEFAULT 'Pending',
+    CUST_ID VARCHAR(10),
+
+    CONSTRAINT fk_order_customer
+        FOREIGN KEY (CUST_ID)
+        REFERENCES CUSTOMER(CUST_ID)
+);
+
+CREATE TABLE ORDER_VAR (
+    ORDERVAR_ID VARCHAR(10) PRIMARY KEY,
+    ORDER_ID VARCHAR(10),
+    VAR_ID VARCHAR(10),
+    CUST_ID VARCHAR(10),
+    PROD_QTY INT,
+    TOTAL_PRICE DECIMAL(10,2),
+
+    CONSTRAINT fk_ov_order
+        FOREIGN KEY (ORDER_ID)
+        REFERENCES ORDERS(ORDER_ID),
+
+    CONSTRAINT fk_ov_variation
+        FOREIGN KEY (VAR_ID)
+        REFERENCES VARIATION(VAR_ID),
+
+    CONSTRAINT fk_ov_customer
+        FOREIGN KEY (CUST_ID)
+        REFERENCES CUSTOMER(CUST_ID)
+
+);
+
+CREATE TABLE RECEIPT (
+    RECEIPT_ID VARCHAR(10) PRIMARY KEY,
+    PAY_TYPE VARCHAR(50),
+    RECEIPT_DATE DATE,
+    GST DECIMAL(10,2),
+    GRAND_TOTAL DECIMAL(10,2),
+    STAFF_ID VARCHAR(10),
+    ORDER_ID VARCHAR(10),
+
+    CONSTRAINT fk_receipt_staff
+        FOREIGN KEY (STAFF_ID)
+        REFERENCES STAFF(STAFF_ID),
+
+    CONSTRAINT fk_receipt_order
+        FOREIGN KEY (ORDER_ID)
+        REFERENCES ORDERS(ORDER_ID)
+);
+
+-- CUSTOMER
+INSERT INTO CUSTOMER (CUST_ID, CUST_NAME, CUST_EMAIL, CUST_PASS, CUST_ADD, CUST_PHONE, USER_ROLE)
+VALUES
+('C001', 'Madeline Lee', 'madeline1@email.com', 'pass123', '123 Elm St, KL', '012-3456789','Customer'),
+('C002', 'Aisha Tan', 'aitan@email.com', 'aita456', '456 Oak St, KL', '013-9876543','Customer'),
+('C003', 'Sofia Lim', 'sofia@email.com', 'sofi789', '789 Pine St, KL', '014-1234567','Customer'),
+('C004', 'Hana Wong', 'hanawong@email.com', 'hana321', '321 Maple St, KL', '015-7654321','Customer'),
+('C005', 'Nur Fatimah', 'nurfatimah@email.com', 'nur654', '654 Birch St, KL', '016-2345678','Customer'),
+('C006', 'Clara Ong', 'clara6@email.com', 'clara987', '987 Cedar St, KL', '017-8765432','Customer'),
+('C007', 'Elena Chong', 'elenachong@email.com', 'elena147', '147 Spruce St, KL', '018-3456789','Customer'),
+('C008', 'Maya Koh', 'mai@email.com', 'maya258', '258 Willow St, KL', '019-9876543','Customer'),
+('C009', 'Jasmine Lee', 'jazzlee@email.com', 'jazz369', '369 Aspen St, KL', '011-1234567','Customer'),
+('C010', 'Farah Idris', 'farah@email.com', 'farah159', '159 Poplar St, KL', '012-7654321','Customer');
+
+-- STAFF
+INSERT INTO STAFF (STAFF_ID, STAFF_EMAIL, STAFF_PASS, STAFF_NAME, STAFF_PHONE, USER_ROLE)
+VALUES
+('S001', 'admin@email.com', 'admin123', 'Admin One', '010-1111111', 'admin'),
+('S002', 'peter@email.com', 'peter456', 'Peter', '010-2222222', 'staff'),
+('S003', 'khostg@email.com', 'kho789', 'Kho', '010-3333333', 'staff'),
+('S004', 'nurfatehah@email.com', 'fatehah321', 'Fatehah', '010-4444444', 'staff'),
+('S005', 'nadia@email.com', 'nadia555', 'Nadia', '010-5555555', 'staff'),
+('S006', 'sophea6@email.com', 'sophea666', 'Sophea', '010-6666666', 'staff'),
+('S007', 'olivia@email.com', 'olivia777', 'Olivia', '010-7777777', 'staff'),
+('S008', 'tokumei@email.com', 'mei888', 'Mei', '010-8888888', 'admin'),
+('S009', 'ariffan@email.com', 'irfan999', 'Irfan', '010-9999999', 'staff'),
+('S010', 'jason10@email.com', 'jason1010', 'Jason', '010-1010101', 'staff');
+
+
+INSERT INTO PRODUCT (PROD_ID, PROD_CODE, PROD_NAME, CATEGORY, TOTAL_QTY, PROD_STATUS, IMG_PATH, CREATE_DATE, LAST_UPDATE)
+VALUES
+('P001','ST','Seasonal Theme','Eyes',400,'In-stock','/assets/images/st_milk_tea_summer.jpg','2026-01-01','2026-01-05'),
+('P002','CBS','Cream Butter Series','Lips',400,'In-stock','/assets/images/cbs.jpg','2026-01-01','2026-01-05'),
+('P003','WBT','Water Blur Tint','Lips',300,'In-stock','/assets/images/wbt.jpg','2026-01-01','2026-01-05'),
+('P004','ICC','Ice Cream Collection','Lips',300,'In-stock','/assets/images/icc.jpg','2026-01-01','2026-01-05');
+
+INSERT INTO VARIATION
+(VAR_ID, VAR_NAME, SKU, VAR_PRICE, QTY_BEFORE, VAR_QTY, SOLD_QTY, VAR_STATUS, IMG_PATH, CREATE_DATE, LAST_UPDATE, PROD_ID)
+VALUES
+('V001','Mauve Cream','CBS-01',28,0,100,10,'In-stock','/assets/images/cbs.jpg','2026-01-01','2026-01-05','P002'),
+('V002','Salted Butter','CBS-02',28,0,100,10,'In-stock','/assets/images/cbs.jpg','2026-01-01','2026-01-05','P002'),
+('V003','Caramel Brick','CBS-03',28,0,100,10,'In-stock','/assets/images/cbs.jpg','2026-01-01','2026-01-05','P002'),
+('V004','Cotton Plum','CBS-04',28,0,100,10,'In-stock','/assets/images/cbs.jpg','2026-01-01','2026-01-05','P002'),
+('V005','Berry Ade','WBT-01',28,0,100,0,'In-stock','/assets/images/wbt.jpg','2026-01-01','2026-01-05','P003'),
+('V006','Ice Berry','WBT-02',28,0,100,10,'In-stock','/assets/images/wbt.jpg','2026-01-01','2026-01-05','P003'),
+('V007','Lavender Cream','WBT-03',28,0,100,10,'In-stock','/assets/images/wbt.jpg','2026-01-01','2026-01-05','P003'),
+('V008','Papaya Milk','ICC-01',28,0,100,0,'In-stock','/assets/images/icc.jpg','2026-01-01','2026-01-05','P004'),
+('V009','Peach Pudding','ICC-02',28,0,100,13,'In-stock','/assets/images/icc.jpg','2026-01-01','2026-01-05','P004'),
+('V010','Fig Plum','ICC-03',28,0,100,10,'In-stock','/assets/images/icc.jpg','2026-01-01','2026-01-05','P004'),
+('V011','Pastel Knit','ST-01',48,0,100,10,'In-stock','/assets/images/st_pastel_knit.jpg','2026-01-01','2026-01-05','P001'),
+('V012','Milk Tea Summer','ST-02',48,0,100,10,'In-stock','/assets//images/st_milk_tea_summer.jpg','2026-01-01','2026-01-05','P001'),
+('V013','Autumn Nuts','ST-03',48,0,100,10,'In-stock','/assets/images/st_autumn_nuts.jpg','2026-01-01','2026-01-05','P001'),
+('V014','Cosmic Berry','ST-04',48,0,100,10,'In-stock','/assets/images/st_cosmic_berry.jpg','2026-01-01','2026-01-05','P001');
+
+INSERT INTO STOCK (STOCK_ID, STOCK_TYPE, STOCK_QTY, STOCK_DATE, REMARK, VAR_ID, STAFF_ID, ORDER_ID)
+VALUES
+('ST001','In',100,'2026-01-01','Received new batch','V011','S002', NULL),
+('ST002','In',10,'2026-01-01','Leftover booth','V013','S003', NULL),
+('ST003','Out',60,'2026-01-01','Booth sale','V013','S004', NULL),
+('ST004','Out',25,'2026-01-01','Sample giveaway','V001','S005', NULL),
+('ST005','In',100,'2026-01-01','Received new batch','V002','S006', NULL),
+('ST006','In',100,'2026-01-01','Received new batch','V003','S007', NULL),
+('ST007','Out',2,'2026-01-01','PR giveaway','V008','S008', NULL),
+('ST008','In',2,'2026-01-01','Return','V006','S009', NULL),
+('ST009','In',100,'2026-01-01','Received new batch','V010','S010', NULL),
+('ST010','Out',2,'2026-01-01','PR giveaway','V012','S002', NULL);
+
+INSERT INTO ORDERS (ORDER_ID, ORDER_NO, CUST_NO, SUB_TOTAL, STATUS, CUST_ID)
+VALUES
+('O001','ORD-001','CN001',104,'Pending','C001'),
+('O002','ORD-002','CN002',112,'Completed','C002'),
+('O003','ORD-003','CN003',48,'Cancelled','C003'),
+('O004','ORD-004','CN004',84,'Completed','C004'), 
+('O005','ORD-005','CN005',172,'Completed','C005'), 
+('O006','ORD-006','CN006',112,'Pending','C006'), 
+('O007','ORD-007','CN007',84,'Pending','C007'),
+('O008','ORD-008','CN008',48,'Completed','C008'), 
+('O009','ORD-009','CN009',112,'Cancelled','C009'), 
+('O010','ORD-010','CN010',124,'Completed','C010');
+
+INSERT INTO ORDER_VAR (ORDERVAR_ID, ORDER_ID, VAR_ID, CUST_ID, PROD_QTY, TOTAL_PRICE)
+VALUES
+-- O001 (2 items)
+('OV001','O001','V001','C001',2,56),   -- 28 x 2
+('OV002','O001','V011','C001',1,48),   -- 48 x 1
+
+
+-- O002 (2 items)
+('OV003','O002','V005','C002',3,84),   -- 28 x 3
+('OV004','O002','V002','C002',1,28),   -- 28 x 1
+
+-- O003 (1 item)
+('OV005','O003','V012','C003',1,48),   -- 48 x 1
+
+-- O004 (2 items)
+('OV006','O004','V008','C004',2,56),   -- 28 x 2
+('OV007','O004','V006','C004',1,28),   -- 28 x 1
+
+-- O005 (3 items)
+('OV008','O005','V013','C005',2,96),   -- 48 x 2
+('OV009','O005','V014','C005',1,48),   -- 48 x 1
+('OV010','O005','V003','C005',1,28),   -- 28 x 1
+
+-- O006 (1 item)
+('OV011','O006','V002','C006',4,112),  -- 28 x 4
+
+-- O007 (2 items)
+('OV012','O007','V010','C007',1,28),   -- 28 x 1
+('OV013','O007','V009','C007',2,56),   -- 28 x 2
+
+-- O008 (1 item)
+('OV014','O008','V012','C008',1,48),   -- 48 x 1
+
+-- O009 (2 items)
+('OV015','O009','V006','C009',3,84),   -- 28 x 3
+('OV016','O009','V001','C009',1,28),   -- 28 x 1
+
+-- O010 (2 items)
+('OV017','O010','V014','C010',2,96),   -- 48 x 2
+('OV018','O010','V005','C010',1,28),   -- 28 x 1
+
+('OV019',null,'V011','C005',1,28),   -- 28 x 1
+('OV020',null,'V012','C001',1,48);   -- 48 x 1
+
+INSERT INTO RECEIPT (RECEIPT_ID, PAY_TYPE, RECEIPT_DATE, GST, GRAND_TOTAL, STAFF_ID, ORDER_ID)
+VALUES
+('R001','Maybank','2026-01-05',6.24,110.24,'S001','O001'),
+('R002','CIMB Bank','2026-01-15',6.72,118.72,'S002','O002'),
+('R003','Public Bank','2026-01-25',2.88,50.88,'S003','O003'),
+('R004','Maybank','2026-02-03',5.04,89.04,'S004','O004'),
+('R005','Maybank','2026-02-14',10.32,182.32,'S005','O005'),
+('R006','Public Bank','2026-02-22',6.72,118.72,'S006','O006'),
+('R007','Maybank','2026-03-01',5.04,89.04,'S007','O007'),
+('R008','Public Bank','2026-03-08',2.88,50.88,'S008','O008'),
+('R009','Public Bank','2026-03-15',6.72,118.72,'S009','O009'),
+('R010','CIMB Bank','2026-03-23',7.44,131.44,'S010','O010');
+
+SELECT *
+FROM PRODUCT;
+
+SELECT *
+FROM STOCK;
+
+SELECT *
+FROM ORDERS;
+
+SELECT *
+FROM ORDER_VAR;
+
+SELECT *
+FROM RECEIPT;
+
+SELECT *
+FROM CUSTOMER;
+
+
+SELECT v.VAR_NAME, v.SKU, SUM(CASE WHEN s.STOCK_TYPE = 'In' THEN s.STOCK_QTY ELSE 0 END) AS STOCK_IN,
+SUM(CASE WHEN s.STOCK_TYPE = 'Out' THEN s.STOCK_QTY ELSE 0 END) AS STOCK_OUT, v.VAR_QTY, v.VAR_STATUS, v.VAR_ID 
+FROM STOCK s 
+JOIN VARIATION v ON s.VAR_ID = v.VAR_ID
+JOIN PRODUCT p ON v.PROD_ID = p.PROD_ID 
+GROUP BY v.VAR_ID, v.VAR_NAME, v.SKU, v.VAR_QTY, v.VAR_STATUS, v.VAR_ID
+ORDER BY v.SKU;
+
+
+SELECT r.RECEIPT_ID, r.RECEIPT_DATE, r.PAY_TYPE, r.GRAND_TOTAL, o.ORDER_NO, 
+c.CUST_ID, o.CUST_NO, c.CUST_NAME, c.CUST_ADD, c.CUST_PHONE, c.CUST_EMAIL,
+o.ORDER_ID
+FROM RECEIPT r 
+JOIN ORDERS o ON r.ORDER_ID = o.ORDER_ID
+JOIN CUSTOMER c ON o.CUST_ID = c.CUST_ID
+WHERE r.ORDER_ID = 'O001';
+
+SELECT ov.ORDERVAR_ID, o.ORDER_ID, ov.VAR_ID, v.IMG_PATH, 
+       p.PROD_NAME, v.VAR_NAME, ov.PROD_QTY, ov.TOTAL_PRICE, ov.CUST_ID
+FROM ORDER_VAR ov
+LEFT JOIN ORDERS o ON ov.ORDER_ID = o.ORDER_ID
+JOIN VARIATION v ON ov.VAR_ID = v.VAR_ID
+JOIN PRODUCT p ON v.PROD_ID = p.PROD_ID
+WHERE ov.CUST_ID = 'C005' 
+  AND ov.ORDER_ID IS NULL;
+
+SELECT ov.ORDERVAR_ID, o.ORDER_ID, ov.VAR_ID, v.IMG_PATH,
+p.PROD_NAME, v.VAR_NAME, ov.PROD_QTY, ov.TOTAL_PRICE, ov.CUST_ID
+FROM ORDER_VAR ov
+LEFT JOIN ORDERS o ON ov.ORDER_ID = o.ORDER_ID
+JOIN VARIATION v ON ov.VAR_ID = v.VAR_ID
+JOIN PRODUCT p ON v.PROD_ID = p.PROD_ID
+WHERE ov.CUST_ID = 'C001' AND ov.ORDER_ID IS NULL;
+
+SELECT * FROM ORDER_VAR ov 
+WHERE CUST_ID = 'C005' AND ORDER_ID IS NULL;
+
+SELECT r.RECEIPT_ID, r.RECEIPT_DATE, r.PAY_TYPE, r.GRAND_TOTAL, 
+o.ORDER_ID, o.ORDER_NO, o.STATUS, o.SUB_TOTAL, r.GST
+FROM RECEIPT r
+JOIN ORDERS o ON r.ORDER_ID = o.ORDER_ID
+WHERE o.CUST_ID = 'C001'
+ORDER BY r.RECEIPT_ID;
+

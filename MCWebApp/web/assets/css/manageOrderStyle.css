@@ -1,0 +1,230 @@
+/* Global */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff; 
+}
+
+/* Main white container */
+.container {
+    background: white;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    margin-top: -20px;
+}
+
+/* Main title */
+.main-container h2 {
+    color: #f85c70;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sort-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+/* Sort dropdown */
+.sort-status {
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: white;
+    font-size: 14px;
+    color: #444;
+    cursor: pointer;
+}
+
+.sort-status:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffc2cc;
+}
+
+/* Filter section */
+/* Container spacing */
+.filter-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Form wrapper */
+.variation-container {
+  background: #fee6e8;
+  border: 1px solid #f85c70;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  width: fit-content;
+}
+
+/* Select styling */
+.variation-select {
+  border: none;
+  background-color: transparent;
+  font-weight: 500;
+  color: #333;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+
+/* Remove ugly focus glow */
+.variation-select:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* Hover feedback */
+.variation-container:hover {
+  background: #fddadd;
+}
+
+/* Order Card */
+/* --- Updated Order Card to Match Sample Design --- */
+.order-card {
+    background: white;
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    border: none !important;
+}
+
+/* Header */
+.order-card .fw-bold {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Spacing card list */
+.card-list {
+    margin-top: 8px;
+}
+
+/* Pending status */
+.order-status-badge {
+    padding: 4px 10px;
+    background: #ffb3c1;
+    color: red;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+/* Completed status */
+.order-status-completed {
+    padding: 4px 10px;
+    background: #d4ffe4;
+    color: #2b8a4e;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+/* Pending status */
+.order-status-pending {
+    padding: 4px 10px;
+    background: #ffb3c1;
+    color: red;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+/* Cancelled status */
+.order-status-cancelled {
+    padding: 4px 10px;
+    background: #e5e7eb;   /* light grey */
+    color: #6b7280;        /* muted dark grey */
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+
+/* Order details text */
+.order-card .row div {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 3px;
+}
+
+/* Buttons (replace Bootstrap look) */
+.order-btn {
+    padding: 8px 14px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none; /* kill the underline */
+    display: inline-block; /* make it behave like a button */
+}
+
+.order-btn-view {
+    background: #fc6c7c;
+    color: white;
+}
+
+.order-btn-view:hover {
+    opacity: 0.9;
+}
+
+.order-btn-receive {
+    background: #d0e6ff;
+    color: #1a4f8b;
+}
+
+.order-btn-receive:hover {
+    opacity: 0.85;
+}
+
+
+/* Default Pending Badge */
+.badge.bg-warning {
+    background-color: #ffb3c1 !important;
+    color: red !important;
+}
+
+/* Completed Badge */
+.badge.completed {
+    background: #d4ffe4 !important;
+    color: #2b8a4e !important;
+}
+
+/* Row details */
+.order-card .row div {
+    font-size: 14px;
+    color: #444;
+}
+
+/* Buttons */
+.btn-outline-primary.btn-sm {
+    border-radius: 12px;
+    border-color: #fc6c7c;
+    color: #fc6c7c;
+}
+
+.btn-outline-primary.btn-sm:hover {
+    background: #fc6c7c;
+    color: white;
+}
+
+.btn-success.btn-sm {
+    background: #d0e6ff;
+    color: #1a4f8b;
+    border-radius: 12px;
+    border: none;
+}
+
+.btn-success.btn-sm:hover {
+    background: #bcd8ff;
+}
+
+/* Remove that disgusting default Bootstrap blue focus */
+button:focus,
+button:focus-visible,
+button:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.mt-2 {
+    padding-top: 15px;
+}

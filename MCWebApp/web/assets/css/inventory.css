@@ -1,0 +1,229 @@
+/* Global body styling */
+body, html {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main title */
+.main-container h2 {
+    color: #f85c70;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Subsections Title */
+h3{
+    color: #f85c70;    
+}
+
+/* Filter section */
+.date-filter, .btn-add{
+    max-width: 160px;
+}
+
+.btn-filter, .btn-add{
+    background: #f85c70;
+    border: 0px;
+}
+
+.btn-filter:hover, .btn-add{
+    background: #fb8a96;
+    border: 0px;
+}
+
+.filterDate{
+    text-align: left;
+}
+
+.data-value {
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Section dividers (the chevron right icons) */
+.table-container .fa-circle-chevron-right{
+    color: #f85c70;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.table-container .fa-circle-chevron-right:hover{
+    transform: translateX(5px);
+}
+
+/* Table section */
+.custom-header th{
+    background-color: #fb8a96;
+    color: #ffffff;
+}
+
+/* Override Bootstrap striped rows */
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #ffe0e6;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #ffffff;
+}
+
+/* Override hover effect */
+.table-hover > tbody > tr:hover {
+    background-color: #ffd1d9;
+}
+
+.prod-img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Dropdown styling */
+
+/* Remove the original styling*/
+.dropdown-toggle, .dropdown-toggle:hover,
+.dropdown-toggle:active, .dropdown-toggle:focus,
+.dropdown-toggle:focus-visible{
+    background: none !important;
+    border: 0;
+    box-shadow: none;
+    outline: none;
+}
+
+/* Dropdown Icon */
+.fa-ellipsis-vertical{
+    color: #fb8a96;
+}
+
+/* Dropdown Item */
+.dropdown-item {
+    background-color: transparent; /* default background */
+}
+
+.dropdown-item:focus,
+.dropdown-item:active,
+.dropdown-item:hover {
+    background-color: #ececec;
+    color: #f85c70;
+    outline: none;
+}
+
+/* Modal styling */
+.open-modal{
+    background: #f85c70;
+    padding: 12px;
+    color: #ffffff;
+    margin-bottom:8px
+}
+
+.open-modal:hover{
+    background: #fb8a96;
+    color: #ffffff;
+}
+
+.btn-add, .btn-stockIn, .btn-stockOut{
+    background: #f85c70;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+.btn-cancel{
+    border: 2px solid #ffe0e6;
+}
+
+.btn-cancel:hover, .btn-add:hover, .btn-stockIn:hover, .btn-stockOut:hover{
+    background: #fb8a96;
+    color: #ffffff;
+}
+
+/* Responsive tweaks */
+
+/* Mobile */
+@media (max-width: 576px) {
+    .filterDate {
+        font-size: 14px !important;
+    }
+
+    p.data-value{
+        font-size: 12px;
+    }
+
+    p.card-title{
+        font-size: 14px;
+    }
+}
+
+/* Make value go below on small screens */
+@media (max-width: 576px) {
+    .card-body.d-flex {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    .card-body.d-flex > div {
+        margin-bottom: 0.5rem; /* spacing between icon, dropdown, value */
+    }
+}
+
+/* Analytics section */
+.bigger-container{
+    margin-bottom: 32px;
+}
+
+.analytics-container {
+    background-color: #fee6e8; /* light pink background */
+    color: #f85c70;
+    border: 2px solid #f85c70; /* pink border */
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.analytics-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Card title and icon */
+.analytics .card-title {
+    font-size: 1rem;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    color: #333;
+    gap: 0.5rem;
+}
+
+.analytics .card-title i {
+    color: #f85c70; /* icon color */
+    font-size: 1.3rem; /* slightly bigger than label text */
+}
+
+/* Value text */
+.analytics .ms-md-2 p {
+    font-size: 1.6rem; /* bold number */
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+/* Center content and spacing */
+.analytics .d-flex {
+    gap: 0.5rem;
+}
+
+/* Responsive stacking for smaller screens */
+@media (max-width: 768px) {
+    .analytics .d-flex.flex-md-row {
+        flex-direction: column !important;
+        align-items: center;
+        text-align: center;
+    }
+}
+/*End of added*/

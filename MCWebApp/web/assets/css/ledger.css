@@ -1,0 +1,66 @@
+/* Global body styling */
+body, html {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main title */
+.main-container h2 {
+    color: #f85c70;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Filter section */
+.date-filter{
+    max-width: 160px;
+}
+
+.btn-filter{
+    background: #f85c70;
+    border: 0px;
+}
+
+.btn-filter:hover{
+    background: #fb8a96;
+    border: 0px;
+}
+
+.filterDate{
+    text-align: left;
+}
+
+/* Table section */
+.custom-header th{
+    background-color: #fb8a96;
+    color: #ffffff;
+}
+
+/* Make table rows taller and add spacing */
+.table tbody tr {
+    height: 60px !important; /* increases the row height */
+}
+
+.table tbody td {
+    padding-top: 2rem !important;   /* more vertical padding */
+    padding-bottom: 2rem !important;
+}
+
+/* Optional: improve readability with alternating row color */
+.table tbody tr:nth-child(even) {
+    background-color: #fdf2f3; /* light pink tint matching your theme */
+}
+
+
+/* Override Bootstrap striped rows */
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #ffe0e6;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #ffffff;
+}
