@@ -114,7 +114,7 @@ git clone https://github.com/alya456nur/MCWebApp.git
 Navigate into the project directory:
 
 ```bash
-cd madeline-cosmetic-web-app
+cd MCWebApp
 ```
 
 ### 2. Set Up the Database
